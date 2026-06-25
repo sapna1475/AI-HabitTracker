@@ -19,6 +19,12 @@ const userSchema = new mongoose.Schema(
            type: Object,
          default: null
         },
+        //idempotency of cron job
+        lastReminderSentDate:{
+            type: Date,
+            default: null
+        
+        },
     },
     
     {timestamps : true}
