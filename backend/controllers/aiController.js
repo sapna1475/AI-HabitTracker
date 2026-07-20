@@ -65,7 +65,7 @@ export const suggestHabits = async (req , res) => {
         const { goals, productiveTime , struggles }  = req.body;
         const userMsg = `User goals : ${goals || "not provided"}\nMost productive time : ${productiveTime || "not provided"}\nPast struggles: ${struggles || "not provided"}\n\nSuggest 3 personalized habits now. Return JSON only.`;
         const { content } = await chatCompletion({
-            system: SYSTEM_PROMPTS.suggestions,
+            system: SYSTEM_PROMPTS.suggestion,
             user : userMsg,
         });
         let suggestions = [];
@@ -243,7 +243,7 @@ export const morningMotivation = async (req, res) => {
     const userMsg = `Today's habits and streaks:\n${ctx}\n\nDone today: ${done}/${total}. Write a personalized morning motivation message. Celebrate any current streaks, encourage completing today's habits, maintain an upbeat tone, and provide one practical suggestion for staying on track. Keep it concise and under 120 words.`;
 
     const { content } = await chatCompletion({
-        system : SYSTEM_PROMPTS.mornings,
+        system : SYSTEM_PROMPTS.morning,
         user: userMsg,
         temperature : 0.8,
     });

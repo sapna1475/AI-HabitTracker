@@ -9,6 +9,7 @@ import logRoutes from "./routes/logs.js";
 import aiRoutes from "./routes/ai.js";
 import notificationRoutes from "./routes/notifications.js";
 import "./scripts/streakReminder.js";
+import { getMetricsSnapshot } from "./ai-features.js";
 
 
 const app = express();
@@ -47,6 +48,10 @@ app.use(express.json({limits:"1mb"}));
 //healthcheck route
 app.get("/api/health", (req, res) => {
     res.json({status:"ok", time: new Date().toISOString()});
+});
+
+app.get("/api/metrics", (req, res) => {
+    res.json(getMetricsSnapshot());
 });
 
 //routes for auth
